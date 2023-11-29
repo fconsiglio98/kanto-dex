@@ -1,37 +1,52 @@
 package com.example.pokedex.network
 
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-private const val URL : String = "https://github.com/brunomoreirazup/kanto-pokedex-json/blob/master/pokedex.json"
-
-/**
- * Build the Moshi object with Kotlin adapter factory that Retrofit will be using.
- */
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-/**
- * The Retrofit object with the Moshi converter.
- */
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(URL)
-    .build()
-
-
-interface PokedexApiService {
-
-    @GET(URL)
-    suspend fun getPokemon() : List<Pokemon>
-
+// Define Retrofit interface for API calls
+interface PokemonApiService {
+    @GET("pokedex.json")
+    suspend fun getPokemons(): PokemonResponse
 }
-object PokemonApi {
-    val retrofitService: PokedexApiService by lazy {
-        retrofit.create(PokedexApiService::class.java)
+
+// Function to fetch and print Pokemon data
+suspend fun fetchPokemonData() {
+    val moshi = Moshi.Builder().build()
+    val client = OkHttpClient.Builder().build()
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://raw.githubusercontent.com/brunomoreirazup/kanto-pokedex-json/master/")
+        .client(client)
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
+
+    val service = retrofit.create(PokemonApiService::class.java)
+
+    try {
+        val response = service.getPokemons()
+        val pokemonList = response.pokemons
+
+        pokemonList.forEach { pokemon ->
+            val parsedPokemon = Pokemon(
+                pokemon.num,
+                pokemon.img,
+                pokemon.name,
+                pokemon.types,
+                pokemon.height,
+                pokemon.weight
+            )
+
+            // Do whatever you want with the parsed Pokemon object
+            println(parsedPokemon)
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
     }
+}
+
+suspend fun main() {
+    fetchPokemonData()
 }
