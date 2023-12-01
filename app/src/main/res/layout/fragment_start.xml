@@ -1,18 +1,178 @@
-<!-- fragment_start.xml -->
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:orientation="vertical">
 
-    <!-- Add your UI elements here -->
-    <!-- Example: TextView to display fetched Pokemon data -->
-    <TextView
-        android:id="@+id/pokemonTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Fetched Pokemon Data"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/black"
+        android:layout_margin="5dp">
 
-</FrameLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:clipToOutline="true"
+            android:outlineProvider="background"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+        <TextView
+            android:id="@+id/name_textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="2dp"
+            android:backgroundTint="@color/red"
+            android:background="@drawable/all_rounded_corners"
+            android:gravity="center"
+            android:letterSpacing="0.2"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="@id/type_textView"
+            app:layout_constraintTop_toTopOf="@id/imageView"
+            app:layout_constraintWidth_percent="0.48"
+            tools:text="RAYQUAZA">
+        </TextView>
+
+        <TextView
+            android:id="@+id/type_textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/all_rounded_corners"
+            android:backgroundTint="@color/purple_500"
+            android:gravity="center"
+            android:letterSpacing="0.3"
+            android:padding="0.05dp"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintTop_toBottomOf="@id/name_textView"
+            app:layout_constraintWidth_percent="0.23"
+            style="@style/CustomRoundedCorners"
+            tools:text="PSYCHIC" />
+
+        <TextView
+            android:id="@+id/type_textView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/all_rounded_corners"
+            android:backgroundTint="@color/purple_500"
+            android:gravity="center"
+            android:letterSpacing="0.3"
+            android:padding="0.05dp"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toEndOf="@id/type_textView"
+            app:layout_constraintTop_toTopOf="@id/type_textView"
+            app:layout_constraintWidth_percent="0.23"
+            tools:text="FLYING" />
+
+        <FrameLayout
+            android:id="@+id/dimensions_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/type_textView"
+            app:layout_constraintTop_toBottomOf="@id/type_textView"
+            app:layout_constraintBottom_toBottomOf="@id/imageView"
+            app:layout_constraintWidth_percent="0.48">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/height_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/top_rounded_corners"
+                    android:backgroundTint="@color/grey"
+                    android:gravity="center"
+                    android:letterSpacing="0.2"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="HT     23'00''" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/weight_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bottom_rounded_corners"
+                    android:backgroundTint="@color/grey"
+                    android:gravity="center"
+                    android:letterSpacing="0.2"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="WT     455.2 lbs." />
+            </LinearLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/description_textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/all_rounded_corners"
+            android:backgroundTint="@color/beige_grey"
+            android:gravity="center"
+            android:letterSpacing="0.2"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            app:layout_constraintHeight_percent="0.48"
+            app:layout_constraintTop_toBottomOf="@id/imageView"
+            app:layout_constraintStart_toStartOf="@id/imageView"
+            app:layout_constraintEnd_toEndOf="@id/dimensions_layout"
+            style="@style/CustomRoundedCorners"
+            tools:text="Often hides in water to stalk unwary prey. For swimming fast, it moves its ears to maintain balance." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        tools:listitem="@layout/pokemon_item_view" />
+</LinearLayout>

@@ -1,0 +1,4 @@
+<!-- custom_scrollbar_track.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FF3700B3"/> <!-- Replace with the background color for the track -->
+</shape>

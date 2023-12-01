@@ -13,4 +13,19 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="roundedImageView">
+        <item name="cornerFamily">rounded</item> <!-- Set corner family to 'rounded' -->
+        <item name="cornerSize">16dp</item> <!-- Set corner radius -->
+    </style>
+
+    <style name="CustomRoundedCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+
 </resources>

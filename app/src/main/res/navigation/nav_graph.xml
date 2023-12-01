@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/startFragment"
         android:name="com.example.pokedex.StartFragment"
-        android:label="fragment_start"
+        android:label="KANTO POKEDEX"
         tools:layout="@layout/fragment_start" />
 </navigation>
