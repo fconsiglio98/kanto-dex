@@ -21,6 +21,7 @@
     <color name="type_ice">#98D8D8</color> <!-- Ice -->
     <color name="type_fighting">#C03028</color> <!-- Fighting -->
     <color name="type_poison">#A040A0</color> <!-- Poison -->
+    <color name="type_steel">#B0C4DE</color> <!-- Steel -->
     <color name="type_ground">#E0C068</color> <!-- Ground -->
     <color name="type_flying">#A890F0</color> <!-- Flying -->
     <color name="type_psychic">#F85888</color> <!-- Psychic -->

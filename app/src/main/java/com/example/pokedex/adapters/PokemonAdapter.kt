@@ -5,16 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
-import coil.request.Disposable
+import com.example.pokedex.network.Pokemon
 import com.example.pokedex.network.model.PokemonViewModel
 
 
 class PokemonAdapter(
     private val viewModel: PokemonViewModel,
-    private val onItemClick: (String, String, String, MutableList<String>, String, String, String) -> Unit
+    private val onItemClick: (pokemon: Pokemon) -> Unit
 ) : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
-    class PokemonViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class PokemonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val pokemonButton: Button = view.findViewById(com.example.pokedex.R.id.button_item)
     }
 
@@ -34,7 +34,7 @@ class PokemonAdapter(
             val clickedItem = viewModel.pokemonData.value?.get(holder.adapterPosition)
             clickedItem?.let { pokemon ->
                 // Notify the fragment with the image URL of the clicked item
-                onItemClick.invoke(pokemon.img, pokemon.num, pokemon.name, pokemon.types, pokemon.height, pokemon.weight, pokemon.description)
+                onItemClick.invoke(pokemon)
             }
         }
     }
