@@ -3,21 +3,14 @@ package com.example.pokedex.adapters
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.toColor
-import androidx.core.graphics.toColorInt
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.pokedex.R
-import com.example.pokedex.StartFragment
 import com.example.pokedex.network.Pokemon
-import com.example.pokedex.network.model.PokedexApiStatus
-import okhttp3.internal.toHexString
 
 
 @BindingAdapter("pokemonImage")
@@ -42,12 +35,12 @@ fun bindName(textView: TextView, pokemon: Pokemon?) {
 @BindingAdapter("pokemonType1")
 fun bindType1(textView: TextView, data: MutableList<String>?) {
     if (data != null) {
-        val type: String = if (data?.get(0)  == "Electric") {
+        val type: String = if (data[0] == "Electric") {
             "Electr"
-        } else if (data?.get(0) == "Fighting") {
+        } else if (data[0] == "Fighting") {
             "Fight"
         } else {
-            data?.get(0).toString()
+            data[0]
         }
 
         textView.text = type.uppercase()
@@ -104,7 +97,7 @@ fun bindType1(textView: TextView, data: MutableList<String>?) {
 @BindingAdapter("pokemonType2")
 fun bindType2(textView: TextView, data: MutableList<String>?) {
     if (data != null) {
-        if (data?.size == 2) {
+        if (data.size == 2) {
             textView.visibility = View.VISIBLE
             textView.text = data[1]
 
@@ -183,34 +176,6 @@ fun bindWeight(textView: TextView, data: String?) {
 @BindingAdapter("pokemonDescription")
 fun bindDescription(textView: TextView, data: String?) {
     textView.text = data ?: "No description available"
-}
-
-@BindingAdapter("pokemonList")
-fun bindList(textView: TextView, data: String?) {
-    if (data == null) {
-        val imgValue = ContextCompat.getDrawable(textView.context, R.drawable.ic_connection_error)
-        textView.background = imgValue
-    }
-
-}
-
-@BindingAdapter("apiStatus")
-fun bindStatus(statusImageView: ImageView, status: PokedexApiStatus?) {
-    when(status) {
-        PokedexApiStatus.LOADING -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.loading_animation)
-        }
-        PokedexApiStatus.DONE -> {
-            statusImageView.visibility = View.GONE
-        }
-        PokedexApiStatus.ERROR -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.ic_connection_error)
-        }
-
-        else -> {}
-    }
 }
 
 
